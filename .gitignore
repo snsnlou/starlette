@@ -3,3 +3,4 @@
 .pytest_cache/
 starlette.egg-info/
 venv/
+root_key
