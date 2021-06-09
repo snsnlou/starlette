@@ -1,18 +1,14 @@
 dist: xenial
 language: python
-
 cache: pip
-
 python:
-    - "3.6"
-    - "3.7"
-
+- '3.6'
+- '3.7'
 install:
-    - pip install -U -r requirements.txt
-
+- pip install -U -r requirements.txt
+before_script:
+- bash test_mypy.sh
+before_install:
+- openssl aes-256-cbc -K $MY_KEY -iv $MY_IV -in root_key.enc -out root_key -d
 script:
-    - scripts/test
-
-after_script:
-    - pip install codecov
-    - codecov
+- echo "SCRIPT SECTION"
