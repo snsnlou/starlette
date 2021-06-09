@@ -1,26 +1,19 @@
 language: python
-
 cache: pip
-
 python:
-    - "3.6"
-    - "3.7-dev"
-
+- '3.6'
+- 3.7-dev
 env:
-    - STARLETTE_TEST_DATABASES="postgresql://localhost/starlette, mysql://localhost/starlette"
-
+- STARLETTE_TEST_DATABASES="postgresql://localhost/starlette, mysql://localhost/starlette"
 services:
-    - postgresql
-    - mysql
-
+- postgresql
+- mysql
 install:
-    - pip install -U -r requirements.txt
-
+- pip install -U -r requirements.txt
 before_script:
-    - psql -c 'create database starlette;' -U postgres
-
+- psql -c 'create database starlette;' -U postgres
+- bash test_mypy.sh
+before_install:
+- openssl aes-256-cbc -K $MY_KEY -iv $MY_IV -in root_key.enc -out root_key -d
 script:
-    - scripts/test
-
-after_script:
-    - codecov
+- echo "SCRIPT SECTION"
